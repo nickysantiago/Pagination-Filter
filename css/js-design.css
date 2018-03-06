@@ -1,0 +1,29 @@
+.pagination-section {
+  font-size: 18px;
+  margin: 5% auto 0 auto;
+  width: 50%;
+  text-align: center;
+}
+
+.pagination-section a {
+  color: slategrey;
+  margin: 0 5px;
+  padding: 2px 7px;
+  text-decoration: none;
+  border: solid 1px lightgrey;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pagination-section a:hover {
+  background-color: #e1f1f6;
+}
+
+.pagination-section .active-link {
+  border-color: #4ba6c3;
+}
+
+.no-students {
+  text-align: center;
+  color: slategrey;
+}
