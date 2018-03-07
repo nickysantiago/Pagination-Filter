@@ -110,12 +110,8 @@ const searchList = () => {
   //Create search input field
   const $input = $('<input placeholder="Search students"/>');
 
-  //Create search button
-  const $button = $('<button>Search</button>');
-
-  //Append input and button to student-search div
+  //Append input to student-search div
   $($studentSearch).append($input);
-  $($studentSearch).append($button);
 
   //Append student-search div to page-header div
   $(".page-header").append($studentSearch);
@@ -123,16 +119,37 @@ const searchList = () => {
   //Get student list
   const $studentList = $(".student-list li");
 
-  /*** Event handler for search button ***/
-  $($button).on("click", (event) => {
-    //Obtain value from student input
-    const inputValue = $($input).val();
+  /*** Event handler for when user presses any which ***/
+  $($input).on("keyup", (event) => {
+    //If input has no characters
+    if ( $($input).val() == "" ){
+      //Hide the no students found message
+      $(".no-students").hide();
 
-    //Execute only if input value is not empty
-    if (inputValue != ""){
+      $(".pagination-section").remove();
+
+      //Show the entire list of students starting from page 1
+      showPage(1, $studentList);
+
+      //Show the links
+      appendPageLinks($studentList);
+    }
+
+    /* If user enters a character,
+      OR if user enters a number
+      OR if user presses backspace OR enter which
+    */
+    else if ( (event.which >= 33 && event.which <= 222) ||
+    (event.which == 8) ||
+    (event.which == 13) ) {
+      //Obtain value from student input
+      const inputValue = $($input).val();
 
       //Remove previous pagination section
       $(".pagination-section").remove();
+
+      //Hide previous no student found message
+      $(".no-students").hide();
 
       //List of students that match the search
       const matchedStudents = [];
@@ -174,27 +191,6 @@ const searchList = () => {
           appendPageLinks(matchedStudents);
         }
       }
-
-    }
-  });
-
-  /*** Event handler for clearing input text ***/
-  $($input).on("click", (event) => {
-    //Execute only if input has text in it
-    if ( $($input).val() ) {
-      //Clear input value when input is clicked
-      $($input).val("");
-
-      //Hide the no students found message
-      $(".no-students").hide();
-
-      $(".pagination-section").remove();
-
-      //Show the entire list of students 
-      showPage(1, $studentList);
-
-      //Show the links
-      appendPageLinks($studentList);
     }
 
   });
