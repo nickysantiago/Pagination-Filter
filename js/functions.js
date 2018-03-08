@@ -53,7 +53,7 @@ const showPage = (pageNumber, studentList) => {
 
   //Show students on the page
   for (let i=0; i<students.length; i++) {
-    $(students[i]).show();
+    $(students[i]).fadeIn();
   }
 
 };
