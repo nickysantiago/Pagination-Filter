@@ -1,5 +1,5 @@
 /*
-  The following script executes the functions 
+  The following script executes the functions
 */
 
 showPage(1, $(".student-list li"));
